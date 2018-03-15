@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}Messenger{% endblock %}</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link href="https://fonts.googleapis.com/css?family=Neucha&amp;subset=cyrillic" rel="stylesheet">
+    <style>
+        header h1 {
+            font-family: 'Neucha', cursive;
+            margin-top: 0;
+        }
+        header {
+            padding: 0 0 0.5em 0.5em;
+        }
+        #wrap {
+            max-width: 960px;
+            margin: 0 auto;
+        }
+        nav {
+            float: right;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        nav ul li {
+            display: inline-block;
+            margin: 0 0.2em;
+            padding: 0.2em;
+        }
+        header:after {
+            content: "";
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <header class="w3-teal">
+            {% if user.is_authenticated %}
+            <nav class="w3-container">
+                <ul>
+                    <li><a href="{% url 'inbox' %}" class="w3-btn w3-white w3-round">Входящие</a></li>
+                    <li><a href="{% url 'outbox' %}" class="w3-btn w3-white w3-round">Исходящие</a></li>
+                    <li><a href="{% url 'write' %}" class="w3-btn w3-white w3-round">Написать</a></li>
+                    <li><a href="{% url 'change_password' %}" class="w3-btn w3-white w3-round">Изменить пароль</a></li>
+                    <li><a href="{% url 'logout' %}" class="w3-btn w3-white w3-round">Выход</a></li>
+                </ul>
+            </nav>
+            {% endif %}
+            <h1>Messenger</h1>
+            {% if user.is_authenticated %}
+            <div id='user'>
+                Привет, {{user.username}}!
+            </div>
+            {% endif %}
+            <div id="location">
+            {% block location %}Главная{% endblock %}
+            </div>
+        </header>
+        <div id="content" class="w3-container">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+</body>
+</html>

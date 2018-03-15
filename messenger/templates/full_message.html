@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}
+    Message &quot;{{message.subject}}&quot;
+{% endblock %}
+{% block location %}Просмотр сообщения{% endblock %}
+{% block content %}
+    <h1>Сообщение</h1>
+    <table class="w3-table w3-striped">
+        <tr>
+            <td>От: {{message.sender.username}}</td>
+        </tr>
+        <tr>
+            <td>Кому: {{message.addressee.username}}</td>
+        </tr>
+        <tr>
+            <td>Дата отправки: {{message.date_sent}}</td>
+        </tr>
+        <tr>
+            <td><h3>{{message.subject}}</h3></td>
+        </tr>
+        <tr>
+            <td><pre>{{message.body}}</pre></td>
+        </tr>
+    </table>
+{% endblock %}

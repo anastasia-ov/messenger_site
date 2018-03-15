@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block title %}Password changed{% endblock %}
+{% block location %}{% endblock %}
+{% block content %}
+    <h1>Сообщение успешно отправлено.</h1>
+    <p>Перейти в <a href="{% url 'outbox' %}">исходящие</a>.</p>
+{% endblock %}

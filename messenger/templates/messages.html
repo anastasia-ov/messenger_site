@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}
+    {% if inbox %}Inbox{% else %}Outbox{% endif %}
+{% endblock %}
+{% block location %}
+    {% if inbox %}Входящие{% else %}Исходящие{% endif %}
+{% endblock %}
+{% block content %}
+    <table class='w3-table w3-striped'>
+        <tr>
+            <td>Time and date</td>
+            <td>Sender</td>
+            <td>Addressee</td>
+            <td>subject</td>
+        </tr>
+        {% for m in messages %}
+        <tr>
+                <td><a href="{% url 'full_message' m.id %}">{{m.date_sent}}</a></td>
+                <td>{{m.sender.username}}</td>
+                <td>{{m.addressee.username}}</td>
+                <td>{{m.subject}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
